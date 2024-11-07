@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marlon Dietrich</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        header {
+            background-color: #FFF4E9;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        nav {
+            background: #FFF4E9;
+            color: #000000;
+            padding: 1em 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1em;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            padding-bottom: 60px;
+            background-color: #fff;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .project {
+            padding-bottom: 40px;
+        }
+
+        /* Grid styles for the skills section */
+        #skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 20px;
+        }
+
+        #skills > div {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #FFF4E9;
+            color: #000000;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Marlon Dietrich</h1>
+        <img src="Marlon_Profilbild.png" alt="Marlon Dietrich" height="200">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#projects" onclick="scrollToSection('projects')">Projects</a></li>
+            <li><a href="#skills" onclick="scrollToSection('skills')">Skills</a></li>
+            <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about" style="padding-bottom: 40px;">
+            <h2>Hi there 👋</h2>
+            <p>
+                If you are looking for a techy person who can quickly devliver prototypes or bring prototypes to production. Talk to me.
+                If you are working on an idea, that makes the world a peak better. Talk to me.
+                Else, thanks for coming by.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Project Lean Startup experience @ https://unumotors.com/</h3>
+                <a href="https://unumotors.com/"><img src="unumotors_logo.png" alt="Unu Logo" height="50"></a>
+                <p>As employee #5 I worked on the repair service offering for the scooter. I cold called car repair shops and gave them licenses to repair our customers' scooters. 
+                    And I wrote the first repair manual for the scooter. Later, I tested setting up a mobile repair service that drove to the customers and carried out the repairs there. 
+                    Building a service fleet of 20 working students.
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>Project Big Corporate @ https://ams-osram.com/</h3>
+                <a href="https://ams-osram.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Osram_Logo.svg" alt="Osram Logo" height="40"></a>
+                <p>As working student I supported my team with implementing the latest IoT Light Standard protocols and providing internal demos. 
+                    Mainly working on https://openthread.io/
+                </p>
+            </div>
+            <div class="project">
+                <h3>Project Hidden Champion @ https://www.captron.com/</h3>
+                <!-- https://www.captron.de/fileadmin/templates/img/captron-logo.png -->
+                <a href="https://www.captron.com/"><img src="https://www.captron.de/fileadmin/templates/img/captron-logo.png" alt="Captron Logo" height="30"></a>
+                <p>After my master I catched the perfect timing to start at Captron. At that time they were one of the biggest players for sensor buttons in the public transport sector. 
+                    They just received an offer from Amazon Warehouses to ship their sensor buttons to be implemented in every Amazon Warehouse in the world. 
+                    I had the opportunity to build the software pillar https://captron-solutions.com/ from the ground up.
+                </p> 
+            </div>
+            <div class="project">
+                <h3>Project own startup idea "commona"</h3>
+                <img src="commona_logo_Webclib_boxWeiss 256x256.png" alt="commona Logo" height="60">
+                <p>An AI expert for renovation and mediation specially for owner associations of multi-family houses to find consenus.
+                </p>
+                <a href="https://commona.flutterflow.app/">Have a sneek peak</a>
+            </div>
+        </section>
+
+        <section class="skill">
+            <h2>Skills</h2>
+            <div id="skills">
+            <div>
+                <h3>Programming Languages</h2>
+                <ul>
+                    <li>C#</li>
+                    <li>Python</li>
+                    <li>Typescript</li>
+                </ul>
+            </div>
+            <div>
+                <h3>FrontEnd Frameworks</h2>
+                <ul>
+                    <li>Blazor</li>
+                    <li>Angular</li>
+                    <li>FlutterFlow</li>
+                </ul>
+            </div>
+            <div>
+                <h3>BackEnd Frameworks</h2>
+                <ul>
+                    <li>.NET</li>
+                    <li>Firebase</li>
+                    <li>Supabase</li>
+                    <li>Deno</li>
+                </ul>
+            </div>
+        </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: marlonsimondietrich@gmail.com</p>
+            <p>GitHub: <a href="https://github.com/marlonsimondietrich">github.com/marlonsimondietrich</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Marlon Dietrich</p>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

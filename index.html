@@ -3,196 +3,737 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marlon Dietrich</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <title>Marlon Dietrich — Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #070815;
+            --bg-alt: #0f1124;
+            --card: rgba(15, 16, 35, 0.6);
+            --accent: #6c5ce7;
+            --accent-alt: #00f5d4;
+            --text-primary: #f5f6ff;
+            --text-muted: #9da7ff;
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 20px 45px rgba(10, 10, 30, 0.45);
+            --glass-blur: blur(24px);
+            --max-width: 1080px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #fff;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 20% 20%, rgba(108, 92, 231, 0.25), transparent 55%),
+                        radial-gradient(circle at 80% 0%, rgba(0, 245, 212, 0.25), transparent 50%),
+                        linear-gradient(140deg, #05060d 0%, #080a16 35%, #06040f 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        header {
-            background-color: #FFF4E9;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.6;
+            z-index: -2;
+            animation: pulse 16s ease-in-out infinite;
         }
 
-        nav {
-            background: #FFF4E9;
-            color: #000000;
-            padding: 1em 0;
+        body::before {
+            background: rgba(108, 92, 231, 0.4);
+            top: -140px;
+            left: -120px;
         }
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 1em;
-        }
-
-        nav a {
-            color: #000000;
-            text-decoration: none;
+        body::after {
+            background: rgba(0, 245, 212, 0.35);
+            bottom: -180px;
+            right: -160px;
+            animation-delay: 6s;
         }
 
         main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            padding-bottom: 60px;
-            background-color: #fff;
+            width: min(92vw, var(--max-width));
+            margin: 0 auto 120px;
+            padding-bottom: 120px;
         }
 
-        h1, h2, h3 {
-            color: #333;
+        nav {
+            position: sticky;
+            top: 0;
+            backdrop-filter: var(--glass-blur);
+            background: rgba(5, 6, 13, 0.85);
+            border-bottom: 1px solid var(--border);
+            z-index: 10;
         }
 
-        .project {
-            padding-bottom: 40px;
+        nav .shell {
+            width: min(92vw, var(--max-width));
+            margin: 0 auto;
+            padding: 18px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* Grid styles for the skills section */
-        #skills {
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo span {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
-            gap: 20px;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            font-size: 18px;
+            font-weight: 700;
         }
 
-        #skills > div {
-            border: 1px solid #ccc;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .primary-cta {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(0, 245, 212, 0.15));
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .primary-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 48px;
+            align-items: center;
+            padding: 120px 0 80px;
+        }
+
+        .hero-copy h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 4.4rem);
+            line-height: 1.05;
+            margin: 0 0 24px;
+        }
+
+        .hero-copy h1 span {
+            color: transparent;
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            -webkit-background-clip: text;
+                    background-clip: text;
+        }
+
+        .hero-copy p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0 0 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .secondary-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .secondary-cta:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-panel {
+            position: relative;
+            border-radius: 28px;
+            padding: 24px;
+            background: radial-gradient(circle at top, rgba(108, 92, 231, 0.4), transparent 60%), linear-gradient(140deg, rgba(20, 24, 52, 0.9), rgba(12, 13, 29, 0.7));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero-panel img {
+            width: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+            filter: saturate(1.15);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+        }
+
+        .floating-card {
+            position: absolute;
+            bottom: 22px;
+            right: 22px;
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: rgba(9, 10, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            backdrop-filter: var(--glass-blur);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card strong {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 40px 0 80px;
+        }
+
+        .metric-card {
+            padding: 20px 22px;
+            border-radius: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            backdrop-filter: var(--glass-blur);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.25s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .metric-card span {
+            font-size: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1;
+        }
+
+        .metric-card small {
+            color: var(--text-muted);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .section-title span {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.35), rgba(0, 245, 212, 0.3));
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .stack-card {
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 18px;
+            background: rgba(14, 17, 40, 0.8);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .stack-card h3 {
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+        }
+
+        .stack-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stack-tags span {
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            background: rgba(108, 92, 231, 0.12);
+            color: var(--text-muted);
+            border: 1px solid rgba(108, 92, 231, 0.35);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 22px;
+            border-left: 2px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 22px 22px 22px 28px;
+            border-radius: 18px;
+            background: rgba(13, 15, 34, 0.85);
+            border: 1px solid var(--border);
+            backdrop-filter: var(--glass-blur);
+            box-shadow: 0 16px 28px rgba(5, 7, 19, 0.35);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            border: 2px solid #040513;
+            left: -29px;
+            top: 28px;
+        }
+
+        .timeline-item h3 {
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+        }
+
+        .timeline-item p {
+            margin: 8px 0 12px;
+            color: var(--text-muted);
+        }
+
+        .timeline-item ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .project-grid {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            position: relative;
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(14, 17, 36, 0.88);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .project-card::after {
+            content: "";
+            position: absolute;
+            inset: -50% 30% 40% -40%;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.35), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(108, 92, 231, 0.45);
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card h3 {
+            margin: 0 0 12px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .availability {
+            margin-top: 80px;
+            padding: 32px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.55), rgba(0, 245, 212, 0.35));
+            color: #fff;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            align-items: center;
+        }
+
+        .availability h3 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .availability p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .availability a {
+            justify-self: end;
+            padding: 12px 26px;
+            border-radius: 999px;
+            background: rgba(7, 8, 21, 0.85);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 12px 30px rgba(7, 8, 21, 0.35);
         }
 
         footer {
-            background-color: #FFF4E9;
-            color: #000000;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            width: min(92vw, var(--max-width));
+            margin: 90px auto 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.45;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.75;
+            }
+        }
+
+        @media (max-width: 720px) {
+            nav .shell {
+                gap: 12px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 80px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Marlon Dietrich</h1>
-        <img src="Marlon_Profilbild.png" alt="Marlon Dietrich" height="200">
-    </header>
-
     <nav>
-        <ul>
-            <li><a href="#projects" onclick="scrollToSection('projects')">Projects</a></li>
-            <li><a href="#skills" onclick="scrollToSection('skills')">Skills</a></li>
-            <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
-        </ul>
+        <div class="shell">
+            <a class="logo" href="#top"><span>MD</span> Marlon Dietrich</a>
+            <div class="nav-links">
+                <a href="#experience">Experience</a>
+                <a href="#stack">Stack</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a class="primary-cta" href="marlondietrich_cv_2025.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+        </div>
     </nav>
 
-    <main>
-        <section id="about" style="padding-bottom: 40px;">
-            <h2>Hi there 👋</h2>
-            <p>
-                If you are looking for a techy person who can quickly devliver prototypes or bring prototypes to production. Talk to me.
-                If you are working on an idea, that makes the world a peak better. Talk to me.
-                Else, thanks for coming by.
-            </p>
-        </section>
-
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Project Lean Startup experience @ https://unumotors.com/</h3>
-                <a href="https://unumotors.com/"><img src="unumotors_logo.png" alt="Unu Logo" height="50"></a>
-                <p>As employee #5 I worked on the repair service offering for the scooter. I cold called car repair shops and gave them licenses to repair our customers' scooters. 
-                    And I wrote the first repair manual for the scooter. Later, I tested setting up a mobile repair service that drove to the customers and carried out the repairs there. 
-                    Building a service fleet of 20 working students.
-                </p>
+    <main id="top">
+        <section class="hero">
+            <div class="hero-copy">
+                <h1>Building AI-induced products that scale <span>from zero to one</span>.</h1>
+                <p>I’m Marlon, a full-stack engineer who enjoys turning ideas into purposeful products. From AI-driven workflows to resilient SaaS architectures, I translate ambiguous problems into elegant shipping software.</p>
+                <div class="hero-actions">
+                    <a class="primary-cta" href="#projects">See case studies</a>
+                    <a class="secondary-cta" href="mailto:marlonsimondietrich@gmail.com">Let’s talk →</a>
+                </div>
             </div>
-
-            <div class="project">
-                <h3>Project Big Corporate @ https://ams-osram.com/</h3>
-                <a href="https://ams-osram.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Osram_Logo.svg" alt="Osram Logo" height="40"></a>
-                <p>As working student I supported my team with implementing the latest IoT Light Standard protocols and providing internal demos. 
-                    Mainly working on https://openthread.io/
-                </p>
-            </div>
-            <div class="project">
-                <h3>Project Hidden Champion @ https://www.captron.com/</h3>
-                <!-- https://www.captron.de/fileadmin/templates/img/captron-logo.png -->
-                <a href="https://www.captron.com/"><img src="https://www.captron.de/fileadmin/templates/img/captron-logo.png" alt="Captron Logo" height="30"></a>
-                <p>After my master I catched the perfect timing to start at Captron. At that time they were one of the biggest players for sensor buttons in the public transport sector. 
-                    They just received an offer from Amazon Warehouses to ship their sensor buttons to be implemented in every Amazon Warehouse in the world. 
-                    I had the opportunity to build the software pillar https://captron-solutions.com/ from the ground up.
-                </p> 
-            </div>
-            <div class="project">
-                <h3>Project own startup idea "commona"</h3>
-                <img src="commona_logo_Webclib_boxWeiss 256x256.png" alt="commona Logo" height="60">
-                <p>An AI expert for renovation and mediation specially for owner associations of multi-family houses to find consenus.
-                </p>
-                <a href="https://commona.flutterflow.app/">Have a sneek peak</a>
+            <div class="hero-panel">
+                <img src="Marlon_profile_closeup.png" alt="Portrait of Marlon Dietrich">
+                <div class="floating-card">
+                    <strong>5+ yrs</strong>
+                    <span>Product-minded engineering</span>
+                </div>
             </div>
         </section>
 
-        <section class="skill">
-            <h2>Skills</h2>
-            <div id="skills">
-            <div>
-                <h3>Programming Languages</h2>
-                <ul>
-                    <li>C#</li>
-                    <li>Python</li>
-                    <li>Typescript</li>
-                </ul>
-            </div>
-            <div>
-                <h3>FrontEnd Frameworks</h2>
-                <ul>
-                    <li>Blazor</li>
-                    <li>Angular</li>
-                    <li>FlutterFlow</li>
-                </ul>
-            </div>
-            <div>
-                <h3>BackEnd Frameworks</h2>
-                <ul>
-                    <li>.NET</li>
-                    <li>Firebase</li>
-                    <li>Supabase</li>
-                    <li>Deno</li>
-                </ul>
-            </div>
-        </div>
+        <section class="metrics" aria-label="Highlights">
+            <article class="metric-card">
+                <span>10×</span>
+                <small>Faster turnaround for B2B proposals by shipping automation in 4 weeks.</small>
+            </article>
+            <article class="metric-card">
+                <span>300+</span>
+                <small>Variables orchestrated in AI-assisted renovation planning flows.</small>
+            </article>
+            <article class="metric-card">
+                <span>From 0 to 1</span>
+                <small>GDPR-compliant AI browser extension launched in 3 months.</small>
+            </article>
         </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: marlonsimondietrich@gmail.com</p>
-            <p>GitHub: <a href="https://github.com/marlonsimondietrich">github.com/marlonsimondietrich</a></p>
+        <section id="stack">
+            <div class="section-title">
+                <span>01</span>
+                <h2>Used Tech Stacks</h2>
+            </div>
+            <div class="stack-grid">
+                <article class="stack-card">
+                    <h3>Product Systems</h3>
+                    <p>Lean discovery, rapid prototyping, and feedback loops that drive velocity.</p>
+                    <div class="stack-tags">
+                        <span>Design Sprints</span><span>Lean Analytics</span><span>Stakeholder Ops</span>
+                    </div>
+                </article>
+                <article class="stack-card">
+                    <h3>Cloud &amp; AI</h3>
+                    <p>Composable pipelines with guardrails for compliance and observability.</p>
+                    <div class="stack-tags">
+                        <span>GCP</span><span>Supabase</span><span>Edge Functions</span><span>Gemini</span>
+                    </div>
+                </article>
+                <article class="stack-card">
+                    <h3>Full-Stack Craft</h3>
+                    <p>From API contracts to front-end polish—owning the delivery end to end.</p>
+                    <div class="stack-tags">
+                        <span>Next.js</span><span>Deno</span><span>TypeScript</span><span>Python</span><span>n8n</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="experience" style="margin-top: 80px;">
+            <div class="section-title">
+                <span>02</span>
+                <h2>Selected Experience</h2>
+            </div>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <h3>dcarbonize — Interim CTO</h3>
+                    <div class="project-meta">
+                        <span class="chip">2025 · Munich</span>
+                        <span class="chip">PropTech</span>
+                    </div>
+                    <p>Scaled an automated renovation intelligence workflow that unlocked instant proposals.</p>
+                    <ul>
+                        <li>Developed an end-to-end automation pipeline from customer inquiry to “Energetic Renovation QuickCheck” (PDF with ~300 variables) within 4 weeks.</li>
+                        <li>Reduced inquiry processing time from ~10 to ~1 minute; shortened response time from 1–2 days to ~5 minutes.</li>
+                        <li>Engaged in 3D building planning with Rhino and introduced Python automation to reduce manual steps and avoid errors.</li>
+                        <li>Managed the entire digital planning process including material orders, manufacturing, and assembly.</li>
+                        <li><strong>Tech Stack:</strong> GCP (service accounts, permissions, document pipelines, cloud functions), Python.</li>
+                    </ul>
+                </article>
+
+                <article class="timeline-item">
+                    <h3>codum — Interim CTO</h3>
+                    <div class="project-meta">
+                        <span class="chip">2024 · Munich</span>
+                        <span class="chip">AI EdTech</span>
+                    </div>
+                    <p>Delivered a GDPR-safe AI coaching extension ready for enterprise pilots in 3 months.</p>
+                    <ul>
+                        <li>Independently developed a GDPR-compliant AI browser extension from concept to productive launch within 3 months.</li>
+                        <li>Onboarded two mid-sized companies, including <strong>Zwilling J. A. Henckels AG</strong>.</li>
+                        <li>Implemented onboarding automation, reducing time-to-value for pilot customers.</li>
+                        <li>Established build-measure-learn cycles to prioritize features and optimize AI behavior; provided prompt training for founders.</li>
+                        <li><strong>Tech Stack:</strong> FlutterFlow, GCP, Gemini API, Supabase, Deno Edge Functions (TypeScript).</li>
+                    </ul>
+                </article>
+
+                <article class="timeline-item">
+                    <h3>commona — Co-Founder &amp; CTO</h3>
+                    <div class="project-meta">
+                        <span class="chip">2023 · Munich</span>
+                        <span class="chip">AI Workflows</span>
+                    </div>
+                    <p>Co-founded an AI-enabled decision platform for HOAs with a focus on rapid validation.</p>
+                    <ul>
+                        <li>Identified problem fit from trend analysis (“Pressure for Renovation in European Buildings”).</li>
+                        <li>Validated via 40+ interviews with property managers; secured 5 LOIs (e.g. Rohrer Hausverwaltung).</li>
+                        <li>Built AI email assistant workflow covering response suggestions, summaries, and classification.</li>
+                        <li>Created MVP with authentication, email automation, and AI pipeline to focus on rapid validation.</li>
+                        <li>Drafted EXIST funding application (€120,000) and pricing model (base rate + success fee).</li>
+                        <li>Ended project strategically in 09/2024 after learning about structural market hurdles.</li>
+                        <li><strong>Tech Stack:</strong> Next.js, GCP, Gemini API, Firebase, Cloud Functions (Python), n8n.</li>
+                    </ul>
+                </article>
+
+                <article class="timeline-item">
+                    <h3>CAPTRON Electronic GmbH — Product Manager &amp; Software Engineer</h3>
+                    <div class="project-meta">
+                        <span class="chip">2019 – 2022 · Munich</span>
+                        <span class="chip">Industry IoT</span>
+                    </div>
+                    <p>Grew a sensors-to-software division while shipping logistics solutions from edge devices to cloud.</p>
+                    <p><strong>Product Manager (09/2021 – 10/2022)</strong> — Industry IoT (Sensors &amp; Software)</p>
+                    <ul>
+                        <li>Built a new business division (<a href="https://captron-solutions.com/de/isac/" target="_blank" rel="noopener noreferrer">CAPTRON Solutions</a>).</li>
+                        <li>Led stakeholder management with key accounts and presented the solution at <strong>Modex (USA)</strong>.</li>
+                        <li>Filed an international patent for a warehouse logistics solution (ISAC).</li>
+                    </ul>
+                    <p><strong>Software Engineer (09/2019 – 09/2021)</strong> — Industry IoT (Sensors &amp; Software)</p>
+                    <ul>
+                        <li>Developed an edge-to-cloud logistics solution using Blazor, C#/.NET, and Azure.</li>
+                        <li>Introduced a pick-by-light logistics system that increased pick rates and reduced errors.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" style="margin-top: 80px;">
+            <div class="section-title">
+                <span>03</span>
+                <h2>Case Studies</h2>
+            </div>
+            <div class="project-grid">
+                <article class="project-card">
+                    <h3>dcarbonize Energetic QuickCheck for buildings</h3>
+                    <p>End-to-end automation from customer inquiry to Energetic Renovation QuickCheck (300-variable PDF) delivered inside minutes.</p>
+                    <div class="stack-tags">
+                        <span>Python</span><span>GCP</span><span>Automation</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <h3>codum AI Coach</h3>
+                    <p>Browser extension enabling tailored micro-learning with secure enterprise controls.</p>
+                    <div class="stack-tags">
+                        <span>FlutterFlow</span><span>Supabase</span><span>Edge Functions</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <h3>commona Decision Ops</h3>
+                    <p>AI decision ops MVP for home owner associations covering auth, AI email automation, and pricing to validate market fit quickly.</p>
+                    <div class="stack-tags">
+                        <span>Next.js</span><span>Gemini</span><span>Firebase</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="availability">
+            <div>
+                <h3>Let’s build something purposeful.</h3>
+                <p>I partner with founders and teams that want thoughtful shipping pace, not chaos. Remote-friendly, Munich-based.</p>
+            </div>
+            <a href="https://calendar.app.google/47NTSbkZksPtQtis6" target="_blank" rel="noopener noreferrer">Book time</a>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2023 Marlon Dietrich</p>
+        <span>© <span id="year"></span> Marlon Dietrich</span>
+        <div>
+            <a href="mailto:marlonsimondietrich@gmail.com">Email</a> ·
+            <a href="https://www.linkedin.com/in/marlondietrich" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·
+            <a href="https://github.com/marlonsimondietrich" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
     </footer>
 
     <script>
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
